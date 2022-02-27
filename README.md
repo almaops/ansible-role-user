@@ -1,7 +1,7 @@
-user-func
-=========
+user
+====
 
-Role user-func aims to configure users in a functional way: the user configuration will be exactly the same, which is described in the config and guaranteed has no side-effects.
+Role user aims to configure users in a functional way: the user configuration will be exactly the same, which is described in the config and guaranteed has no side-effects.
 
 Description
 ------------
@@ -60,7 +60,7 @@ Example 1 (short)
       roles:
     
         - tags: [ admins, freehck ]
-          role: user-func
+          role: almaops.user
           username: freehck
           give_sudo: yes
           authorized_keys: [ freehck ]
@@ -68,7 +68,7 @@ Example 1 (short)
             - host: all
     
         - tags: [ special, jenkins ]
-          role: user-func
+          role: almaops.user
           username: jenkins
           authorized_keys: [ jenkins, jenkins-slave01, jenkins-slave02 ]
           hosts:
@@ -77,7 +77,7 @@ Example 1 (short)
               groups: [ docker ]
     
         - tags: [ testers, tester ]
-          role: user-func
+          role: almaops.user
           username: tester
           authorized_keys: [ tester ]
           hosts:
@@ -90,7 +90,7 @@ Example 1 (short)
     ssh_public_keys:
       - name: freehck
         fullname: Dmitrii Kashin
-        key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPSD4/7GDGnHuFr/p/ZmDoW0RZ/3bHvoI/s5WwOpARJuqgnzj2CyfiPxkKzvCuncUq8O8FfjnAyyj7pEIV2MSEQnxzoFDfcJHRH4sw68TLlGENUvQjtTqrZQ2fyZ6Nu7dktq4A3aOxV0rVZa2oJMA1V1LFj5y9u9B4Sj1pSuY0HkAF1XHJDyBQUs8ncrBkwakqCw0wKI7aLC6tph4whFzJqs8LSnwrR6kMMyVC2xjaw8vczM1wcYVfc6lPN7tWJTH3GrjQRdEYEJo3VqInoiQ9OKb171fMrp9N1u6a88ffTDdX3Jlgm8MRSItuGkdJ9tNXke/hq7GuKmavx7sMf34d freehck
+        key: ssh-rsa AAAA...fg46 freehck
     
       - name: jenkins
         key: ...
@@ -104,13 +104,13 @@ Example 1 (short)
 Example 2 (with all possible options)
 ----------------
 
-    - role: user-func
+    - role: almaops.user
       username: freehck # required
-      give_sudo: no
+      give_sudo: false
       password: "mysecret"
-      lock_password: no
-      disable_user: no
-      delete_user: no
+      lock_password: false
+      disable_user: false
+      delete_user: false
       shell: "/bin/bash"
       common_groups: [ "users" ]
       authorized_keys: [ key_name, ... ]
@@ -120,11 +120,11 @@ Example 2 (with all possible options)
           key: <public-key>
       hosts: # required
         - host: host-or-inventory-group # required
-          give_sudo: yes
+          give_sudo: true
           password: "mysecret"
-          lock_password: no
-          disable_user: no
-          delete_user: no
+          lock_password: false
+          disable_user: false
+          delete_user: false
           shell: "/bin/zsh"
           groups: [ "vboxusers" ]
           authorized_keys: [ key_name, ... ]
